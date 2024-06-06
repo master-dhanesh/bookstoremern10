@@ -1,0 +1,31 @@
+<%- include("partials/header")%>
+  <%- include("partials/nav")%>
+    <!--  -->
+    <div class="d-flex align-items-center w-100 mt-5 px-5">
+      <img class="w-50" style="height: 80vh;object-fit: cover;object-position: center;" src="<%= book.poster %>" alt="">
+
+      <form class="w-50 px-5" class="rounded p-5 mt-5 container " action="/update-book/<%= book._id %>" method="post">
+        <a class="text-decoration-none" href="/details/<%= book._id%>">Back</a>
+        <h1 class="mb-3 fs-1 fw-bolder">Book Details</h1>
+        <input class="w-100 form-control mb-3 py-2" type="url" placeholder="Book Poster" name="poster"
+          value="<%= book.poster%>">
+        <input class="  form-control mb-3 py-2" type="text" placeholder="Book Name" name="name" value="<%= book.name%>">
+        <input class=" form-control mb-3 py-2" type="text" placeholder="Author Name" name="author"
+          value="<%= book.author%>">
+        <br>
+        <input class=" form-control mb-3 py-2" type="text" placeholder="ISBN Number" name="isbn"
+          value="<%= book.isbn%>">
+        <input class=" form-control mb-3 py-2" type="number" placeholder="Book Price" name="price"
+          value="<%= book.price%>">
+        <textarea name="description" rows="5" class="w-100 form-control mb-3 py-2"
+          placeholder="enter description here..."><%= book.description%></textarea>
+
+        <button class="btn btn-primary">Update Book</button>
+      </form>
+
+    </div>
+
+
+
+    <!--  -->
+    <%- include("partials/footer")%>

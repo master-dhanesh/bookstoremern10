@@ -1,0 +1,22 @@
+<%- include("partials/header")%>
+  <%- include("partials/nav")%>
+    <!--  -->
+
+    <form class="rounded p-5 mt-5 container " action="/create-book" method="post">
+      <h1 class="mb-5 fs-1 fw-bolder">Register New Book</h1>
+      <!-- <input class="w-50 form-control mb-3 py-2" type="file" placeholder="Book Poster" name="poster"> -->
+      <input class="w-50 form-control mb-3 py-2" type="url" placeholder="Book Poster" name="poster">
+      <input class="w-50 form-control mb-3 py-2" type="url" placeholder="Book Poster" name="poster">
+      <input class="d-inline w-25  form-control mb-3 py-2" type="text" placeholder="Book Name" name="name">
+      <input class="d-inline w-25 form-control mb-3 py-2" type="text" placeholder="Author Name" name="author">
+      <br>
+      <input class="d-inline w-25 form-control mb-3 py-2" type="text" placeholder="ISBN Number" name="isbn">
+      <input class="d-inline w-25 form-control mb-3 py-2" type="number" placeholder="Book Price" name="price">
+      <textarea name="description" rows="5" class="w-50 form-control mb-3 py-2"
+        placeholder="enter description here..."></textarea>
+
+      <button class="btn btn-primary w-25">Add To Library</button>
+    </form>
+
+    <!--  -->
+    <%- include("partials/footer")%>
