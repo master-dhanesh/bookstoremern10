@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 
 const BookCollection = require("../models/bookSchema");
+const { checkPrice } = require("../utils/middlewares");
+const upload = require("../utils/multer");
 
 router.get("/", function (req, res, next) {
     res.render("home");
@@ -25,24 +27,24 @@ router.get("/create-book", function (req, res, next) {
     res.render("createbook");
 });
 
-router.post("/create-book", checkPrice, async function (req, res, next) {
-    try {
-        // BookCollection.create(req.body).then().catch();
-        const newBook = await new BookCollection(req.body);
-        await newBook.save();
-        res.redirect("/library");
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.post(
+    "/create-book",
+    upload.single("poster"),
+    checkPrice,
+    async function (req, res, next) {
+        try {
+            const newBook = await new BookCollection({
+                ...req.body,
+                poster: req.file.filename,
+            });
 
-function checkPrice(req, res, next) {
-    if (req.body.price < 500) {
-        res.send("Price Too much Low, we do not allow to sell.");
-    } else {
-        next();
+            await newBook.save();
+            res.redirect("/library");
+        } catch (error) {
+            res.send(error);
+        }
     }
-}
+);
 
 router.get("/details/:id", async function (req, res, next) {
     try {

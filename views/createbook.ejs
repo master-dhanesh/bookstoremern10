@@ -2,11 +2,10 @@
   <%- include("partials/nav")%>
     <!--  -->
 
-    <form class="rounded p-5 mt-5 container " action="/create-book" method="post">
+    <form class="rounded p-5 mt-5 container " action="/create-book" method="post" enctype="multipart/form-data">
       <h1 class="mb-5 fs-1 fw-bolder">Register New Book</h1>
-      <!-- <input class="w-50 form-control mb-3 py-2" type="file" placeholder="Book Poster" name="poster"> -->
-      <input class="w-50 form-control mb-3 py-2" type="url" placeholder="Book Poster" name="poster">
-      <input class="w-50 form-control mb-3 py-2" type="url" placeholder="Book Poster" name="poster">
+      <input class="w-50 form-control mb-3 py-2" type="file" placeholder="Book Poster" name="poster">
+      <!-- <input class="w-50 form-control mb-3 py-2" type="url" placeholder="Book Poster" name="poster"> -->
       <input class="d-inline w-25  form-control mb-3 py-2" type="text" placeholder="Book Name" name="name">
       <input class="d-inline w-25 form-control mb-3 py-2" type="text" placeholder="Author Name" name="author">
       <br>
