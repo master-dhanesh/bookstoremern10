@@ -94,15 +94,29 @@ router.get("/update-book/:id", async function (req, res, next) {
     }
 });
 
-router.post("/update-book/:id", async function (req, res, next) {
-    try {
-        await BookCollection.findByIdAndUpdate(req.params.id, req.body);
-        res.redirect(`/details/${req.params.id}`);
-    } catch (error) {
-        console.log(error);
-        res.send(error);
+router.post(
+    "/update-book/:id",
+    upload.single("poster"),
+    async function (req, res, next) {
+        try {
+            const updatedBook = { ...req.body };
+            if (req.file) {
+                updatedBook.poster = req.file.filename;
+                fs.unlinkSync(
+                    path.join(
+                        __dirname,
+                        `../public/images/${req.body.oldimage}`
+                    )
+                );
+            }
+            await BookCollection.findByIdAndUpdate(req.params.id, updatedBook);
+            res.redirect(`/details/${req.params.id}`);
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
     }
-});
+);
 
 router.get("/delete-book/:id", async function (req, res, next) {
     try {
